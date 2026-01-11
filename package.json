@@ -1,0 +1,33 @@
+{
+  "name": "bimcolllab-tech-assessment",
+  "version": "1.0.0",
+  "description": "Node js + Express based api getway to check issues within provided building and site plans.",
+  "main": "index.ts",
+  "scripts": {
+    "dev": "nodemon --exec ts-node src/index.ts",
+    "lint": "lint init"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamaniket/BiMcolllab-Tech-Assessment.git"
+  },
+  "author": "Aniket Wachakawade",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iamaniket/BiMcolllab-Tech-Assessment/issues"
+  },
+  "homepage": "https://github.com/iamaniket/BiMcolllab-Tech-Assessment#readme",
+  "dependencies": {
+    "express": "^4.22.1",
+    "lint": "^0.8.19"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.0.6",
+    "@typescript-eslint/eslint-plugin": "^8.52.0",
+    "@typescript-eslint/parser": "^8.52.0",
+    "eslint": "^9.39.2",
+    "nodemon": "^3.1.11",
+    "ts-node": "^10.9.2"
+  }
+}
