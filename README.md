@@ -1,4 +1,7 @@
 
+# Tech Assessment Data
+This repository provides a simple data set for the tech assessment. Please use the [data.json](data.json) file for your assessment.
+
 # Setup
 
 ## Clone the Repo
@@ -11,8 +14,13 @@ Reference: https://nodejs.org/en/download
 ## Install npm dependencies
 ```bash
 cd BiMcolllab-Tech-Assessment
-npm install
+npm install 
+```
 
-# Tech Assessment Data
+## Run in Dev mode
+```bash
+npm run dev 
+```
 
-This repository provides a simple data set for the tech assessment. Please use the [data.json](data.json) file for your assessment.
+## Swagger API Doc
+Visit : [http://localhost:3000/api-docs/](http://localhost:3000/api-docs/) to try out avalable API end points
