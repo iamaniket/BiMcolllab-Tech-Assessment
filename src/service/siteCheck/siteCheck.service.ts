@@ -23,7 +23,7 @@ export function clashChecker(modelData: IModel): Array<Isssue> {
         buildings.push(new Building(building));
     })
 
-    return [...generalBusinessRuleCheck(site, buildings)];
+    return [...generalBusinessRuleCheck(site, buildings), ...zoningBusinessRuleCheck(buildings)];
 }
 
 
@@ -68,7 +68,7 @@ function generalBusinessRuleCheck(site: Site, buildings: Array<Building>): Array
                 if (distance < minBuildingDist) {
                     issues.push({
                         type: issueType,
-                         entites: [buildingObj.name, otherBuildongObj.name],
+                        entites: [buildingObj.name, otherBuildongObj.name],
                         description: "Building " + buildingObj.name + " and " + otherBuildongObj.name + " has " + distance + " units beween tham, they must have " + minBuildingDist + " units"
                     });
                 }
@@ -81,7 +81,69 @@ function generalBusinessRuleCheck(site: Site, buildings: Array<Building>): Array
 
 
 
-function zoningBusinessRuleCheck(site: Site, buildings: Array<Building>): Array<Isssue> {
+function zoningBusinessRuleCheck(buildings: Array<Building>): Array<Isssue> {
 
-    return [];
+
+    const issues: Array<Isssue> = [];
+    const issueType = "Zoning business rules"
+    const clubScoolminDist = 200;
+    const residentialClubStadiumDist = 150;
+
+    const nighClubs = buildings.filter(building => building.type == "Nightclub");
+    const schools = buildings.filter(building => building.type == "School");
+    const residentialBuilding = buildings.filter(building => building.type == "ResidentialBuilding");
+    const stadiums = buildings.filter(building => building.type == "Stadium");
+
+
+    nighClubs.forEach(club => {
+        schools.forEach(school => {
+            const distance = club.distanceToBuilding(school);
+
+            if (distance < clubScoolminDist) {
+                issues.push(
+                    {
+                        type: issueType,
+                        entites: [club.name, school.name],
+                        description: "Nightclub " + club.name + " and School " + school.name + " are at " + distance + " units from eeach other they must be at lease " + clubScoolminDist + " units away."
+                    }
+                )
+            }
+        })
+    });
+
+    residentialBuilding.forEach(rBuilding => {
+
+        stadiums.forEach(stadium => {
+
+            const distance = rBuilding.distanceToBuilding(stadium);
+
+            if (distance < residentialClubStadiumDist) {
+                issues.push(
+                    {
+                        type: issueType,
+                        entites: [rBuilding.name, stadium.name],
+                        description: "ResidentialBuilding " + rBuilding.name + " and stadium " + stadium.name + " are at " + distance + " units from each other they must be at lease " + residentialClubStadiumDist + " units away."
+                    }
+                )
+            }
+        });
+
+        nighClubs.forEach(club => {
+
+            const distance = rBuilding.distanceToBuilding(club);
+            
+            if (distance < residentialClubStadiumDist) {
+                issues.push(
+                    {
+                        type: issueType,
+                        entites: [rBuilding.name, club.name],
+                        description: "ResidentialBuilding " + rBuilding.name + " and club " + club.name + " are at " + distance + " units from each other they must be at lease " + residentialClubStadiumDist + " units away."
+                    }
+                )
+            }
+
+        });
+    })
+
+    return issues;
 }

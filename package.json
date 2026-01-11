@@ -4,8 +4,7 @@
   "description": "Node js + Express based api getway to check issues within provided building and site plans.",
   "main": "index.ts",
   "scripts": {
-    "dev": "nodemon --exec ts-node src/index.ts",
-    "lint": "lint init"
+    "dev": "nodemon --exec ts-node src/index.ts"
   },
   "repository": {
     "type": "git",
@@ -22,7 +21,6 @@
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.8",
     "express": "^4.22.1",
-    "lint": "^0.8.19",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
   },
@@ -31,7 +29,6 @@
     "@types/node": "^25.0.6",
     "@typescript-eslint/eslint-plugin": "^8.52.0",
     "@typescript-eslint/parser": "^8.52.0",
-    "eslint": "^9.39.2",
     "nodemon": "^3.1.11",
     "ts-node": "^10.9.2"
   }
