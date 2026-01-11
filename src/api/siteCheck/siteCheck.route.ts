@@ -3,7 +3,73 @@ import { siteChecker } from "./siteCheck.controller"
 
 export const siteCheck = Router();
 
-siteCheck.post('/clash-check', async (req: Request, res: Response) => {
+
+/**
+ * @swagger
+ * /site-check:
+ *   post:
+ *     summary: Check site plan for building clashes Zoning and genral rules for positions
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               sitePlan:
+ *                 type: object
+ *                 properties:
+ *                   width:
+ *                     type: number
+ *                     example: 1000
+ *                   length:
+ *                     type: number
+ *                     example: 500
+ *               buildings:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     name:
+ *                       type: string
+ *                       example: "Oakwood Academy"
+ *                     type:
+ *                       type: string
+ *                       example: "School"
+ *                     width:
+ *                       type: number
+ *                       example: 300
+ *                     length:
+ *                       type: number
+ *                       example: 300
+ *                     x:
+ *                       type: number
+ *                       example: 0
+ *                     y:
+ *                       type: number
+ *                       example: 0
+ *     responses:
+ *       200:
+ *         description: Returns validation results
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 hasIssues:
+ *                   type: boolean
+ *                   example: true
+ *                 issues:
+ *                   type: array
+ *                   items:
+ *                     type: string
+ *                   example: ["Oakwood Academy overlaps with Willow Residence"]
+ *       400:
+ *         description: Validation error
+ *       500:
+ *         description: Internal server error
+ */
+siteCheck.post('/site-check', async (req: Request, res: Response) => {
     try {
         const data = req.body ? req.body : {};
         const result = siteChecker(data);
