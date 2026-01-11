@@ -1,7 +1,7 @@
 import { ISite } from "../../../types/schema";
 import Box from "../geometry/Box"
 import Vector2D from "../geometry/Vector2D"
-import { Building } from "./building";
+import { Building } from "./Building";
 
 export class Site extends Box {
 

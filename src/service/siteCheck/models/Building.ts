@@ -21,4 +21,13 @@ export class Building extends Box {
     public isOverlappingBuilding(otherBuilding: Building): boolean {
         return this.isOverlapping(otherBuilding);
     }
+
+    /**
+     * Calculates distance between 2 buildings
+     * @param otherBuilding building to check with
+     * @returns 
+     */
+    public distanceToBuilding(otherBuilding: Building): number {
+        return this.distanceToBox(otherBuilding);
+    }
 }

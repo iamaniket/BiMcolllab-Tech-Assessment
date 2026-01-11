@@ -1,6 +1,6 @@
 import { Isssue } from "../../types/issues";
 import { IModel } from "./../../types/schema"
-import { Building } from "./models/building";
+import { Building } from "./models/Building";
 import { Site } from "./models/Site";
 
 /**
@@ -31,6 +31,7 @@ function generalBusinessRuleCheck(site: Site, buildings: Array<Building>): Array
 
     const issues: Array<Isssue> = [];
     const issueType = "General business rules";
+    const minBuildingDist = 10;
 
     buildings.forEach((buildingObj, i) => {
 
@@ -59,6 +60,18 @@ function generalBusinessRuleCheck(site: Site, buildings: Array<Building>): Array
                     entites: [buildingObj.name, otherBuildongObj.name],
                     description: "Building " + buildingObj.name + " and " + otherBuildongObj.name + "are overlaping each other"
                 });
+            }
+            else {
+                const distance = buildingObj.distanceToBuilding(otherBuildongObj);
+
+                // General
+                if (distance < minBuildingDist) {
+                    issues.push({
+                        type: issueType,
+                         entites: [buildingObj.name, otherBuildongObj.name],
+                        description: "Building " + buildingObj.name + " and " + otherBuildongObj.name + " has " + distance + " units beween tham, they must have " + minBuildingDist + " units"
+                    });
+                }
             }
         })
     });

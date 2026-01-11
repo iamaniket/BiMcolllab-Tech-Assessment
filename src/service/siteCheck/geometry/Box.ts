@@ -6,10 +6,16 @@ export default class Box {
     public width: number;
     public height: number;
 
+    protected min: Vector2D;
+    protected max: Vector2D;
+
+
     constructor(position: Vector2D, width: number, height: number) {
         this.position = position;
         this.width = width;
         this.height = height;
+        this.min = new Vector2D(this.position.x, this.position.y);
+        this.max = new Vector2D(this.position.x + this.width, this.position.y + this.height);
     }
 
     /**
@@ -20,18 +26,13 @@ export default class Box {
      */
     protected isPointInBox(point: Vector2D): boolean {
 
-        const minX = this.position.x;
-        const maxX = this.position.x + this.width;
-        const minY = this.position.y;
-        const maxY = this.position.y + this.height;
-
-        return point.x >= minX && point.x <= maxX &&
-            point.y >= minY && point.y <= maxY;
+        return point.x >= this.min.x && point.x <= this.max.x &&
+            point.y >= this.min.y && point.y <= this.max.y;
     }
 
     /**
      * Checks if boxes are collding or not
-     * @param other 
+     * @param other box to check with
      * @returns {boolean} true if overallping is present
      */
     protected isOverlapping(other: Box): boolean {
@@ -41,6 +42,17 @@ export default class Box {
             this.position.y + this.height <= other.position.y ||
             other.position.y + other.height <= this.position.y
         );
+    }
+
+    /**
+     * Calculates distance between 2 boxes
+     * @param other box to check with
+     * @returns 
+     */
+    protected distanceToBox(other: Box): number {
+        const dx = Math.max(this.min.x - other.max.x, other.min.x - this.max.x, 0);
+        const dy = Math.max(this.min.y - other.max.y, other.min.y - this.max.y, 0);
+        return Math.sqrt((dx * dx) + (dy * dy));
     }
 
 
