@@ -1,16 +1,20 @@
+import { clashChecker } from '../../service/siteCheck/siteCheck.service';
+import { IModel } from '../../types/schema';
 import { validateSchema } from '../../utility/validate';
 
-export function siteChecker(data: unknown): { status: boolean, errors?: Array<Object> | null | undefined } {
+export function siteChecker(data: IModel): { status: boolean, issues?: Array<Object> | null | undefined } {
 
     if (!validateSchema(data)) {
         return {
             status: false,
-            errors: validateSchema.errors
+            issues: validateSchema.errors
         }
     }
 
-    // WIP
+    const issues = clashChecker(data);
+
     return {
-        status: true
+        status: true,
+        issues: issues
     }
 }
