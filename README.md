@@ -1,15 +1,17 @@
 
-
-
-
 # Setup
 
-Clone the Repo : https://github.com/iamaniket/BiMcolllab-Tech-Assessment.git
-Install Node.js (v 20) if its alredy not present. Ref: https://nodejs.org/en/download
-Install npm dependencies 
-  cd BiMcolllab-Tech-Assessment
-  npm install
-Check api doc at http://localhost/3000/api-docs in the browser (Chrome/ Edge)
+## Clone the Repo
+https://github.com/iamaniket/BiMcolllab-Tech-Assessment.git
+
+## Install Node.js
+Install Node.js (v20) if it's not already present.  
+Reference: https://nodejs.org/en/download
+
+## Install npm dependencies
+```bash
+cd BiMcolllab-Tech-Assessment
+npm install
 
 # Tech Assessment Data
 
