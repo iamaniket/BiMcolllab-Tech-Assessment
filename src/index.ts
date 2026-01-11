@@ -1,5 +1,5 @@
 import express, { Express } from 'express';
-import { validate } from './api/validate.controller';
+import { validate } from './api/validate.route';
 import swaggerUi from 'swagger-ui-express';
 import { swaggerSpec } from '../swagger'
 
