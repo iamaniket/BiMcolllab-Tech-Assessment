@@ -1,5 +1,5 @@
 import express, { Express } from 'express';
-import { validate } from './api/validate.route';
+import { siteCheck } from './api/siteCheck/siteCheck.route';
 import swaggerUi from 'swagger-ui-express';
 import { swaggerSpec } from '../swagger'
 
@@ -33,4 +33,4 @@ app.get('/health', (_req, res) => {
     res.json({ status: 'ok' });
 });
 
-app.use(validate);
+app.use(siteCheck);
