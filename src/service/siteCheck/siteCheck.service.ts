@@ -4,7 +4,7 @@ import { Building } from "./models/Building";
 import { Site } from "./models/Site";
 
 /**
- * Performs clash and business and zoning rule checks for a site model.
+ * Performs business and zoning rule checks for a site model.
  * 
  * This function converts the raw model data into domain objects (Site and Buildings),
  * and then applies all general business rules suchOverlap detection between buildings
@@ -14,7 +14,7 @@ import { Site } from "./models/Site";
  * @param {IModel} modelData - The input site model containing sitePlan and building data.
  * @returns {Array<Issue>} - A list of issues found
  */
-export function clashChecker(modelData: IModel): Array<Isssue> {
+export function checker(modelData: IModel): Array<Isssue> {
 
     const site = new Site(modelData.sitePlan);
     const buildings: Array<Building> = [];
@@ -131,7 +131,7 @@ function zoningBusinessRuleCheck(buildings: Array<Building>): Array<Isssue> {
         nighClubs.forEach(club => {
 
             const distance = rBuilding.distanceToBuilding(club);
-            
+
             if (distance < residentialClubStadiumDist) {
                 issues.push(
                     {
