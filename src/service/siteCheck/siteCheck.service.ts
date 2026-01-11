@@ -69,7 +69,7 @@ function generalBusinessRuleCheck(site: Site, buildings: Array<Building>): Array
                     issues.push({
                         type: issueType,
                         entites: [buildingObj.name, otherBuildongObj.name],
-                        description: "Building " + buildingObj.name + " and " + otherBuildongObj.name + " has " + distance + " units beween tham, they must have " + minBuildingDist + " units"
+                        description: "Building " + buildingObj.name + " and " + otherBuildongObj.name + " has " + distance + " units between them, they must have " + minBuildingDist + " units"
                     });
                 }
             }
@@ -104,7 +104,7 @@ function zoningBusinessRuleCheck(buildings: Array<Building>): Array<Isssue> {
                     {
                         type: issueType,
                         entites: [club.name, school.name],
-                        description: "Nightclub " + club.name + " and School " + school.name + " are at " + distance + " units from eeach other they must be at lease " + clubScoolminDist + " units away."
+                        description: "Nightclub " + club.name + " and School " + school.name + " are at " + distance + " units from each other they must be at least " + clubScoolminDist + " units away."
                     }
                 )
             }
@@ -122,7 +122,7 @@ function zoningBusinessRuleCheck(buildings: Array<Building>): Array<Isssue> {
                     {
                         type: issueType,
                         entites: [rBuilding.name, stadium.name],
-                        description: "ResidentialBuilding " + rBuilding.name + " and stadium " + stadium.name + " are at " + distance + " units from each other they must be at lease " + residentialClubStadiumDist + " units away."
+                        description: "ResidentialBuilding " + rBuilding.name + " and stadium " + stadium.name + " are at " + distance + " units from each other they must be at least " + residentialClubStadiumDist + " units away."
                     }
                 )
             }
@@ -137,7 +137,7 @@ function zoningBusinessRuleCheck(buildings: Array<Building>): Array<Isssue> {
                     {
                         type: issueType,
                         entites: [rBuilding.name, club.name],
-                        description: "ResidentialBuilding " + rBuilding.name + " and club " + club.name + " are at " + distance + " units from each other they must be at lease " + residentialClubStadiumDist + " units away."
+                        description: "ResidentialBuilding " + rBuilding.name + " and club " + club.name + " are at " + distance + " units from each other they must be at least " + residentialClubStadiumDist + " units away."
                     }
                 )
             }

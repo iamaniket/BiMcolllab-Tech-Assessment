@@ -1,7 +1,7 @@
 import express, { Express } from 'express';
 import { siteCheck } from './api/siteCheck/siteCheck.route';
 import swaggerUi from 'swagger-ui-express';
-import { swaggerSpec } from '../swagger'
+import { swaggerSpec } from '../swagger';
 
 const port: number = 3000;
 
