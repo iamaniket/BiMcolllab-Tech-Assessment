@@ -13,11 +13,11 @@ export default class Box {
     }
 
     /**
-    * Checks if a given point lies inside this box (inclusive edges)
-    * 
-    * @param point - The point to check
-    * @returns true if the point is inside the box, false otherwise
-    */
+     * Checks if a given point lies inside this box (inclusive edges)
+     * 
+     * @param point - The point to check
+     * @returns true if the point is inside the box, false otherwise
+     */
     protected isPointInBox(point: Vector2D): boolean {
 
         const minX = this.position.x;
@@ -29,17 +29,31 @@ export default class Box {
             point.y >= minY && point.y <= maxY;
     }
 
+    /**
+     * Checks if boxes are collding or not
+     * @param other 
+     * @returns {boolean} true if overallping is present
+     */
+    protected isOverlapping(other: Box): boolean {
+        return !(
+            this.position.x + this.width <= other.position.x ||
+            other.position.x + other.width <= this.position.x ||
+            this.position.y + this.height <= other.position.y ||
+            other.position.y + other.height <= this.position.y
+        );
+    }
+
 
     /**
-    * Returns the four corner points of the box as Vector2D objects.
-    * 
-    * The order of the points is:
-    * 1. Bottom-left
-    * 2. Bottom-right
-    * 3. Top-right
-    * 4. Top-left
-    * 
-    * @returns {[Vector2D, Vector2D, Vector2D, Vector2D]}  An array containing the four corners of the box.
+     * Returns the four corner points of the box as Vector2D objects.
+     * 
+     * The order of the points is:
+     * 1. Bottom-left
+     * 2. Bottom-right
+     * 3. Top-right
+     * 4. Top-left
+     * 
+     * @returns {[Vector2D, Vector2D, Vector2D, Vector2D]}  An array containing the four corners of the box.
     */
     public getCornerPoints(): [Vector2D, Vector2D, Vector2D, Vector2D] {
         return [

@@ -30,7 +30,7 @@ export function clashChecker(modelData: IModel): Array<Isssue> {
 function generalBusinessRuleCheck(site: Site, buildings: Array<Building>): Array<Isssue> {
 
     const issues: Array<Isssue> = [];
-    const issueType = "General business rules"
+    const issueType = "General business rules";
 
     buildings.forEach((buildingObj, i) => {
 
@@ -42,6 +42,25 @@ function generalBusinessRuleCheck(site: Site, buildings: Array<Building>): Array
                 description: "Building " + buildingObj.name + " is not positioned fully within the boundaries of the site plan"
             });
         }
+
+        // Check if building can overlap with each other.
+        buildings.forEach((otherBuildongObj, j) => {
+
+            // Check if building A overlaps with building B
+            if (j <= i) { // it will avoid repetition
+                return;
+            }
+
+            const isOverlapping = buildingObj.isOverlappingBuilding(otherBuildongObj)
+
+            if (isOverlapping) {
+                issues.push({
+                    type: issueType,
+                    entites: [buildingObj.name, otherBuildongObj.name],
+                    description: "Building " + buildingObj.name + " and " + otherBuildongObj.name + "are overlaping each other"
+                });
+            }
+        })
     });
 
     return issues;

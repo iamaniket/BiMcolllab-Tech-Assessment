@@ -12,4 +12,13 @@ export class Building extends Box {
         this.name = data.name;
         this.type = data.type;
     }
+
+    /**
+     * Checks if building overalps with another or not 
+     * @param otherBuilding 
+     * @returns {boolean} checks and returns if overlap is present or not
+     */
+    public isOverlappingBuilding(otherBuilding: Building): boolean {
+        return this.isOverlapping(otherBuilding);
+    }
 }
