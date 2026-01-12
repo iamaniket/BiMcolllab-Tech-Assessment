@@ -13,7 +13,7 @@ Reference: https://nodejs.org/en/download
 
 ## Install npm dependencies
 ```bash
-cd BiMcolllab-Tech-Assessment
+cd /* root-dir-of-repo */
 npm install 
 ```
 
